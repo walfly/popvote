@@ -32,7 +32,6 @@ export default class TallySection extends Component {
             dem.displacement = 0;
             rep.displacement = (dem.rows - rep.rows);
         }
-        debugger;
         return (
           <div style={{width: this.props.width}} className="tally-section">
             <Tallies

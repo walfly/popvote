@@ -88,7 +88,7 @@
 }
 
 .tally-item-2{
-  background-position: 0 133px;
+  background-position: 1px 133px;
 }
 
 .tally-item-3{
@@ -96,7 +96,7 @@
 }
 
 .tally-item-4{
-  background-position: 0 213px;
+  background-position: 2px 213px;
 }
 
 .tally-item-5{
@@ -104,11 +104,11 @@
 }
 
 .tally-item-6{
-  background-position: 0 291px;
+  background-position: 4px 291px;
 }
 
 .tally-item-7{
-  background-position: 0 333px;
+  background-position: -1px 333px;
 }
 
 .tally-item-8{
@@ -116,11 +116,11 @@
 }
 
 .tally-item-9{
-  background-position: 0 408px;
+  background-position: -2px 408px;
 }
 
 .tally-item-10{
-  background-position: 0 453px;
+  background-position: 1px 453px;
 }
 
 .remainder-1{
