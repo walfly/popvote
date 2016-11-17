@@ -1,0 +1,138 @@
+
+.tally-container.left{
+  display: inline-block;
+  float: left;
+  padding-right: 20px;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.tally-container h3{
+    color: #999;
+    font-size: 36px;
+    margin-top: 70px;
+    margin-bottom: 55px;
+}
+
+.tally-container.left h3 span{
+    color: #d32939;
+}
+
+.tally-container.right h3 span{
+    color: #396AD8;
+}
+
+
+.tally-container.left .total-numeric{
+    color: #d32939;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.tally-container.right .total-numeric{
+    color: #396AD8;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.tally-container.right{
+  display: inline-block;
+  float: right;
+  padding-left: 20px;
+  border-left: 1px solid #dddddd;
+  margin-left: -1px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.tally-container{
+    line-height: 0;
+}
+
+.tally-section{
+  position: relative;
+  margin: auto;
+  display: block;
+}
+
+.tally-item{
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 40px;
+}
+
+.first-row{
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.blue{
+  background-image: url(/blue_tally_sprite_75.png);
+  background-size: 50px;
+}
+
+.red{
+  background-image: url(/red_tally_sprite_75.png);
+  background-size: 50px;
+}
+
+.tally-item-0{
+  background-position: 0 53px;
+}
+
+.tally-item-1{
+  background-position: 0 93px;
+}
+
+.tally-item-2{
+  background-position: 0 133px;
+}
+
+.tally-item-3{
+  background-position: 0 173px;
+}
+
+.tally-item-4{
+  background-position: 0 213px;
+}
+
+.tally-item-5{
+  background-position: 0 253px;
+}
+
+.tally-item-6{
+  background-position: 0 291px;
+}
+
+.tally-item-7{
+  background-position: 0 333px;
+}
+
+.tally-item-8{
+  background-position: 0 373px;
+}
+
+.tally-item-9{
+  background-position: 0 408px;
+}
+
+.tally-item-10{
+  background-position: 0 453px;
+}
+
+.remainder-1{
+  background-position: 0 608px;
+}
+.remainder-2{
+  background-position: 0 570px;
+}
+.remainder-3{
+  background-position: 0 530px;
+}
+.remainder-4{
+  background-position: 0 490px;
+}
+

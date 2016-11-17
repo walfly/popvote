@@ -1,0 +1,40 @@
+.comparison-legend{
+    width: 55vw;
+    margin: auto;
+    border: 1px solid #dddddd;
+    position: relative;
+    padding: 25px;
+}
+
+.comparison-legend p{
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.comparison-legend .dem{
+    text-align: left;
+    padding-left: 15px;
+}
+
+.comparison-legend .rep{
+    text-align: right;
+    padding-right: 15px;
+}
+
+.comparison-legend p span{
+    vertical-align: middle;
+}
+.comparison-legend .legend-text{
+    height: 20px;
+    display: inline-block;
+}
+
+.dem-single .remainder-1{
+  background-position: 15px 608px;
+}
+
+
+.rep-single .remainder-1{
+  background-position: 15px 608px;
+}

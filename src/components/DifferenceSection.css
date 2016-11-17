@@ -1,0 +1,17 @@
+.diff-section{
+    border: 1px solid #dddddd;
+    color: #396AD8;
+    font-weight: 900;
+    margin: auto;
+    margin-top: 20px;
+    width: 55vw;
+    padding: 40px;
+}
+
+.diff-section .number{
+    font-size: 142px;
+}
+
+.diff-section .number-exp{
+    font-size: 48px;
+}

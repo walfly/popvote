@@ -1,0 +1,9 @@
+.time-since-section{
+    border: 1px solid #dddddd;
+    color: #999;
+    font-size: 12px;
+    width: 15vw;
+    padding: 10px 15px;
+    margin: auto;
+    margin-top: -1px;
+}

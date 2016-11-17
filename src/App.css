@@ -1,0 +1,53 @@
+.App {
+  margin-top: 0;
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+h1{
+  background-color: #eeeeee;
+  color: #999999;
+  margin-top: 0;
+  font-size: 18px;
+  padding: 15px;
+  font-weight: 900;
+  margin-bottom: 50px;
+}
+
+p{
+  color: #999999;
+  margin: 0;
+  font-weight: 300;
+}
+.blue-text{
+  color: #396AD8;
+  font-weight:900;
+}
+.red-text{
+  color: #d32939;
+  font-weight:900;
+}
+.star{
+  content: "0x2605";
+  width:20px;
+  height: 20px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/*.tally-container{
+  display: inline-block;
+}*/

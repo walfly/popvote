@@ -1,0 +1,25 @@
+.comparisons-section{
+    width: 70vw;
+    position: relative;
+    display: block;
+    margin: auto;
+}
+
+.comparisons-section .dividing-line{
+    position: absolute;
+    display: block;
+    width: 10px;
+    left: 50%;
+    top: 0;
+    border-right: 1px solid #dddddd;
+}
+
+.comparisons-section .how-big{
+    color: #999;
+    top: 100px;
+    font-size: 36px;
+    position: relative;
+    text-align: left;
+    width: 40%;
+}
+
