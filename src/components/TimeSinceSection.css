@@ -2,8 +2,20 @@
     border: 1px solid #dddddd;
     color: #999;
     font-size: 12px;
-    width: 15vw;
-    padding: 10px 15px;
+    width: 70vw;
+    padding: 10px 0px;
     margin: auto;
     margin-top: -1px;
+}
+
+@media screen and (min-device-width: 900px) {
+    .time-since-section{
+        border: 1px solid #dddddd;
+        color: #999;
+        font-size: 12px;
+        width: 15vw;
+        padding: 10px 15px;
+        margin: auto;
+        margin-top: -1px;
+    }
 }

@@ -7,32 +7,40 @@
   box-sizing: border-box;
 }
 
-.tally-container h3{
+.tally-section h3{
+    width: 50%;
+    display: inline-block;
     color: #999;
     font-size: 36px;
-    margin-top: 70px;
-    margin-bottom: 55px;
+    margin: 0;
+    padding-top: 70px;
+    padding-bottom: 55px;
 }
 
-.tally-container.left h3 span{
+.tally-section h3.dem{
+    border-left: 1px solid #ddd;
+    margin-left: -1px;
+}
+
+.tally-section h3.rep span{
     color: #d32939;
 }
 
-.tally-container.right h3 span{
+.tally-section h3.dem span{
     color: #396AD8;
 }
 
 
-.tally-container.left .total-numeric{
+.tally-section .rep .total-numeric{
+    font-size: 14px;
     color: #d32939;
     font-weight: 300;
-    margin-bottom: 30px;
 }
 
-.tally-container.right .total-numeric{
+.tally-section .dem .total-numeric{
+    font-size: 14px;
     color: #396AD8;
     font-weight: 300;
-    margin-bottom: 30px;
 }
 
 .tally-container.right{
@@ -46,6 +54,7 @@
 }
 
 .tally-container{
+    padding-top: 25px;
     line-height: 0;
 }
 

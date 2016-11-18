@@ -1,26 +1,55 @@
 .comparison-legend{
-    width: 55vw;
+    width: 90%;
     margin: auto;
     border: 1px solid #dddddd;
     position: relative;
-    padding: 25px;
-}
-
-.comparison-legend p{
-    display: inline-block;
-    width: 50%;
-    box-sizing: border-box;
+    padding: 12px 20px;
 }
 
 .comparison-legend .dem{
     text-align: left;
-    padding-left: 15px;
 }
 
 .comparison-legend .rep{
     text-align: right;
-    padding-right: 15px;
 }
+
+.comparison-legend p{
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.comparison-legend p.dem-desktop{
+    display: none;
+}
+
+@media screen and (min-device-width: 900px) {
+    .comparison-legend p.dem-desktop{
+        display: inline-block;
+    }
+    .comparison-legend p.dem-mobile{
+        display: none;
+    }
+    .comparison-legend{
+        width: 47vw;
+    }
+    .comparison-legend .dem{
+        text-align: left;
+        padding-left: 15px;
+    }
+
+    .comparison-legend .rep{
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .comparison-legend p{
+        width: 50%;
+    }
+}
+
+
+
 
 .comparison-legend p span{
     vertical-align: middle;
@@ -30,11 +59,3 @@
     display: inline-block;
 }
 
-.dem-single .remainder-1{
-  background-position: 15px 608px;
-}
-
-
-.rep-single .remainder-1{
-  background-position: 15px 608px;
-}

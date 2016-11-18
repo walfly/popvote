@@ -9,8 +9,8 @@ export default class ComparisonsSection extends Component {
         height: PropTypes.number
     }
     render() {
-        return (<div className="comparisons-section" style={{height: this.props.height}}>
-            <div className="dividing-line" style={{height: this.props.height}}/>
+        return (<div className="comparisons-section">
+            <div className="dividing-line" />
             <div className="how-big">
                 What does <span className="blue-text">{stringifyNum(this.props.diff)}</span> look like?
             </div>

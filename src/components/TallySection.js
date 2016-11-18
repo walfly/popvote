@@ -1,44 +1,41 @@
 import React, { PropTypes, Component } from 'react';
 import Tallies from './Tallies';
+import ComparisonLegend from './ComparisonLegend';
+import {Map} from 'immutable';
 import './TallySection.css';
 
 export default class TallySection extends Component {
     static propTypes = {
-        d: PropTypes.object,
-        r: PropTypes.object,
+        tallies: PropTypes.instanceOf(Map),
         width: PropTypes.number
     }
-    getData(data, color, side){
-        const obj = {color, side};
-        obj.svotes = data.cvotes;
-        obj.width = (this.props.width/2);
-        obj.votes = Number(data.cvotes.replace(/,/g, ''))/200;
-        obj.fivers = Math.floor(obj.votes / 5);
-        obj.remainder = Math.floor(obj.votes % 5);
-        obj.numPerRow = Math.floor((obj.width - 20)/50);
-        obj.rows = Math.floor(obj.fivers/obj.numPerRow);
-        obj.firstRow = obj.fivers % obj.numPerRow;
-        obj.rowsToRender = 150;
-        obj.name = data.lname;
-        return obj;
-    }
     render() {
-        const dem = this.getData(this.props.d, 'blue', 'right');
-        const rep = this.getData(this.props.r, 'red', 'left');
-        if (rep.votes > dem.votes) {
-            rep.displacement = 0;
-            dem.displacement = (rep.rows - dem.rows);
-        } else {
-            dem.displacement = 0;
-            rep.displacement = (dem.rows - rep.rows);
-        }
+        const rep = this.props.tallies.get('rep');
+        const dem = this.props.tallies.get('dem');
         return (
           <div style={{width: this.props.width}} className="tally-section">
+            <h3 className="rep">
+                All <span>{rep.get('data').name}</span> Voters
+                <p className="total-numeric">({rep.get('data').svotes} TOTAL)</p>
+            </h3>
+            <h3 className="dem">
+                All <span>{dem.get('data').name}</span> Voters
+                <p className="total-numeric">({dem.get('data').svotes} TOTAL)</p>
+            </h3>
+            <ComparisonLegend repName={rep.get('data').name} demName={dem.get('data').name}/>
             <Tallies
-              {...rep}
+              side={rep.get('data').side}
+              width={rep.get('data').width}
+              displacement={rep.get('data').displacement}
+              firstRow={rep.getIn(['list', 'first'])}
+              full={rep.getIn(['list', 'full'])}
             />
             <Tallies
-              {...dem}
+              side={dem.get('data').side}
+              width={dem.get('data').width}
+              displacement={dem.get('data').displacement}
+              firstRow={dem.getIn(['list', 'first'])}
+              full={dem.getIn(['list', 'full'])}
             />
           </div>
         );
