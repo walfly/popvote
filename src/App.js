@@ -38,7 +38,7 @@ class App extends Component {
         <DifferenceSection diff={diff}/>
         <TimeSinceSection ts={this.props.ts}/>
         <ComparisonsSection diff={diff} height={150}/>
-        <TallySection tallies={this.props.tallies} width={this.props.width} />
+        <TallySection dispatch={this.props.dispatch} tallies={this.props.tallies} width={this.props.width} />
       </div>
     );
   }

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import Router from './router';
 import throttle from 'lodash.throttle';
-import {getScroll} from './actions';
+import {bindScroll} from './actions';
 
 const middleware = [ thunk ];
 
@@ -26,7 +26,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-document.addEventListener('scroll', (e) => {
-    store.dispatch(getScroll(e.target.body.scrollTop));
-}, true);
-
+bindScroll(store);

@@ -17,6 +17,77 @@
     padding-bottom: 55px;
 }
 
+.tally-container .scroll-button{
+    color: #ddd;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -70px;
+    width: 90px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 14px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+
+.tally-container .scroll-button:hover{
+    color: #fff;
+    background-color: #ddd;
+}
+
+.tally-container .scroll-button:after{
+    content: "";
+    width: 5px;
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    margin-left: -1px;
+    height: 20px;
+    border-left: 1px solid #ddd;
+    transition: top 0.3s linear;
+}
+.tally-container .scroll-button:before{
+    content: "";
+    width: 10px;
+    position: absolute;
+    left: 50%;
+    top: 90px;
+    margin-left: -6px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    transition: top 0.3s linear;
+}
+
+.tally-container .scroll-button:hover:before{
+    top: 105px;
+}
+.tally-container .scroll-button:hover:after{
+    top: 95px;
+}
+
+@media screen and (min-device-width: 900px) {
+    .tally-container .scroll-button{
+        width: 140px
+    }
+    .tally-container .scroll-button:after{
+        top: 60px;
+    }
+    .tally-container .scroll-button:before{
+        top: 70px;
+    }
+
+    .tally-container .scroll-button:hover:before{
+        top: 85px;
+    }
+    .tally-container .scroll-button:hover:after{
+        top: 75px;
+    }
+}
 .tally-section h3.dem{
     border-left: 1px solid #ddd;
     margin-left: -1px;
@@ -56,6 +127,7 @@
 .tally-container{
     padding-top: 25px;
     line-height: 0;
+    position: relative;
 }
 
 .tally-section{

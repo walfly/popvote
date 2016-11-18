@@ -2,6 +2,8 @@ import cnnApi from '../api/cnnApi';
 export const GET_2016 = 'GET_2016';
 export const GET_WIDTH = 'GET_WIDTH';
 export const GET_SCROLL = 'GET_SCROLL';
+export const SCROLL_BUTTON = 'SCROLL_BUTTON';
+let buttonPressed = false;
 
 const widthCalc = () => {
     const w = window;
@@ -32,4 +34,20 @@ export const getScroll = (val) => {
         type: GET_SCROLL,
         data: val
     }
+}
+
+export const scrollButtonOn = () => {
+    buttonPressed = true;
+}
+
+export const scrollButtonOff = () => {
+    buttonPressed = false;
+}
+
+export const bindScroll = (store) => {
+    document.addEventListener('scroll', (e) => {
+        if(!buttonPressed){
+            store.dispatch(getScroll(e.target.body.scrollTop));
+        }
+    }, true);
 }
