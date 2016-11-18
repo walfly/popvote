@@ -19,6 +19,7 @@ const store = createStore(
 
 const router = new Router({store: store});
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App router={router} />
@@ -26,4 +27,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+router.history.start();
 bindScroll(store);

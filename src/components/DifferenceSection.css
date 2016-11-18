@@ -8,6 +8,10 @@
     padding: 20px;
 }
 
+.diff-section.red{
+    color: #d32939;
+}
+
 .diff-section .number{
     font-size: 60px;
 }

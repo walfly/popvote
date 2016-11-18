@@ -3,7 +3,7 @@ import './TimeSinceSection.css';
 
 export default class TimeSinceSection extends Component {
     static propTypes = {
-        ts: PropTypes.number
+        ts: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }
     render() {
         const date = new Date(this.props.ts);

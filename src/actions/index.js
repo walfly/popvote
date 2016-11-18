@@ -1,8 +1,12 @@
 import cnnApi from '../api/cnnApi';
+import {yearData} from '../api/yearData';
+
 export const GET_2016 = 'GET_2016';
+export const GET_CURR_YEAR = 'GET_CURR_YEAR';
 export const GET_WIDTH = 'GET_WIDTH';
 export const GET_SCROLL = 'GET_SCROLL';
 export const SCROLL_BUTTON = 'SCROLL_BUTTON';
+export const SWITCH_YEAR = 'SWITCH_YEAR';
 let buttonPressed = false;
 
 const widthCalc = () => {
@@ -17,10 +21,25 @@ export const get2016 = () => dispatch => {
     cnnApi().then(json => {
         dispatch({
             type: GET_2016,
-            data: json
+            data: json,
+            key: "2016"
         })
     })
 };
+
+export const getYear = (year) => {
+    return {
+        type: SWITCH_YEAR,
+        data: yearData[year],
+        key: year
+    }
+};
+
+export const getCurrYear = () => {
+    return {
+        type: GET_CURR_YEAR
+    }
+}
 
 export const getWidth = () => {
     return {
