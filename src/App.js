@@ -5,7 +5,7 @@ import TallySection from './components/TallySection';
 import TimeSinceSection from './components/TimeSinceSection';
 import ComparisonsSection from './components/ComparisonsSection';
 import YearSelector from './components/YearSelector';
-import {getCurrYear, getWidth, getYears} from './actions';
+import {getWidth, getYears} from './actions';
 import {Map} from 'immutable';
 import './App.css';
 
@@ -25,7 +25,7 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch(getWidth());
     this.props.dispatch(getYears());
-    this.props.dispatch(getCurrYear());
+    this.props.router.navigate(this.props.year, {trigger: true});
   }
 
   route(year) {
