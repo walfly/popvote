@@ -4,7 +4,8 @@ import DifferenceSection from './components/DifferenceSection';
 import TallySection from './components/TallySection';
 import TimeSinceSection from './components/TimeSinceSection';
 import ComparisonsSection from './components/ComparisonsSection';
-import {getCurrYear, getWidth} from './actions';
+import YearSelector from './components/YearSelector';
+import {getCurrYear, getWidth, getYears} from './actions';
 import {Map} from 'immutable';
 import './App.css';
 
@@ -17,16 +18,18 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired,
     tallies: PropTypes.instanceOf(Map),
     width: PropTypes.number,
-    year: PropTypes.string
+    year: PropTypes.string,
+    years: PropTypes.array
   }
 
   componentDidMount() {
     this.props.dispatch(getWidth());
+    this.props.dispatch(getYears());
     this.props.dispatch(getCurrYear());
   }
 
-  route() {
-    this.props.router.navigate('2012', {trigger: true});
+  route(year) {
+    this.props.router.navigate(year, {trigger: true});
   }
 
   render() {
@@ -49,7 +52,10 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1 onClick={() => this.route() }>★ 2016 POPULAR VOTE ★</h1>
+        <div className="header">
+          <h1>Who Got More Votes?</h1>
+          <YearSelector onChange={(e) => this.route(e)} year={this.props.year} yearList={this.props.years}/>
+        </div>
         <p>In the {this.props.year} Presidential Election,</p>
         <p><span className="red-text">{this.props.r.cvotes}</span> people voted for {`${this.props.r.fname} ${this.props.r.lname}`},</p>
         <p><span className="blue-text">{this.props.d.cvotes}</span> people voted for {`${this.props.d.fname} ${this.props.d.lname}`}.</p>
@@ -62,8 +68,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  const {showingData} = state;
+  const {showingData, years} = state;
   return {
+    years,
     year: showingData.get('year'),
     d: showingData.get('data').candidates.find(item => item.party === "D"),
     r: showingData.get('data').candidates.find(item => item.party === "R"),

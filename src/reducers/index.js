@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {List, Map} from 'immutable';
-import { GET_2016, GET_WIDTH, GET_SCROLL, GET_CURR_YEAR, SWITCH_YEAR } from '../actions';
+import { GET_2016, GET_WIDTH, GET_SCROLL, GET_CURR_YEAR, SWITCH_YEAR, GET_YEARS } from '../actions';
 
 const getData = (data, color, side, width, scroll) => {
   const obj = {color, side};
@@ -118,8 +118,19 @@ const showingData = (state = Map({
    }
 };
 
+const years = (state = [], action) => {
+   switch(action.type){
+      case GET_YEARS:
+         action.data.push('2016')
+         return action.data.reverse();
+      default:
+         return state;
+   }
+}
+
 const rootReducer = combineReducers({
-  showingData
+  showingData,
+  years
 });
 
 export default rootReducer;

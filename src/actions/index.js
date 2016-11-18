@@ -7,6 +7,7 @@ export const GET_WIDTH = 'GET_WIDTH';
 export const GET_SCROLL = 'GET_SCROLL';
 export const SCROLL_BUTTON = 'SCROLL_BUTTON';
 export const SWITCH_YEAR = 'SWITCH_YEAR';
+export const GET_YEARS = 'GET_YEARS';
 let buttonPressed = false;
 
 const widthCalc = () => {
@@ -52,6 +53,13 @@ export const getScroll = (val) => {
     return {
         type: GET_SCROLL,
         data: val
+    }
+}
+
+export const getYears = () => {
+    return {
+        type: GET_YEARS,
+        data: Object.keys(yearData)
     }
 }
 
