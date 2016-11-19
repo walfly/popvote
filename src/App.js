@@ -28,8 +28,8 @@ class App extends Component {
     this.props.router.navigate(this.props.year, {trigger: true});
   }
 
-  route(year) {
-    this.props.router.navigate(year, {trigger: true});
+  route(selection) {
+    this.props.router.navigate(selection.value, {trigger: true});
   }
 
   render() {

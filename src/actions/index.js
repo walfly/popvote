@@ -1,5 +1,6 @@
 import cnnApi from '../api/cnnApi';
 import {yearData} from '../api/yearData';
+import throttle from 'lodash.throttle';
 
 export const GET_2016 = 'GET_2016';
 export const GET_CURR_YEAR = 'GET_CURR_YEAR';
@@ -59,7 +60,7 @@ export const getScroll = (val) => {
 export const getYears = () => {
     return {
         type: GET_YEARS,
-        data: Object.keys(yearData)
+        data: Object.keys(yearData).map(item => { return {name: item, value: item};})
     }
 }
 
@@ -72,9 +73,9 @@ export const scrollButtonOff = () => {
 }
 
 export const bindScroll = (store) => {
-    document.addEventListener('scroll', (e) => {
+    document.addEventListener('scroll', throttle((e) => {
         if(!buttonPressed){
             store.dispatch(getScroll(e.target.body.scrollTop));
         }
-    }, true);
+    }, 400), true);
 }

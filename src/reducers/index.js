@@ -121,7 +121,7 @@ const showingData = (state = Map({
 const years = (state = [], action) => {
    switch(action.type){
       case GET_YEARS:
-         action.data.push('2016')
+         action.data.push({name: '2016', value: '2016'});
          return action.data.reverse();
       default:
          return state;

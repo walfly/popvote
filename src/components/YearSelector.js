@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
+import Select from './Select'
+import './YearSelector.css';
 
-export default class YearSelect extends Component {
+export default class YearSelector extends Component {
     static propTypes = {
         year: PropTypes.string,
         yearList: PropTypes.array,
@@ -9,13 +11,13 @@ export default class YearSelect extends Component {
     render() {
         return (
             <div className="year-select">
-                ★
-                    <select onChange={(e) => this.props.onChange(e.target.value)} value={this.props.year}>
-                        {this.props.yearList.map(item => {
-                            return <option value={item} key={item}> {item} </option>
-                        })}
-                    </select>
-                ★
+                <span className="star-left">★</span>
+                    <Select
+                        onChange={(e) => this.props.onChange(e)}
+                        options={this.props.yearList}
+                        value={this.props.year}
+                    />
+                    <span className="star-right">★</span>
             </div>
         );
     }

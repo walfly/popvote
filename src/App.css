@@ -5,11 +5,19 @@
 }
 
 .header{
-  text-align: left;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
   background-color: #eeeeee;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
   display: block;
   margin-top: 0;
+  height: 50px
+}
+
+@media screen and (min-device-width: 900px) {
+  .header{
+    margin-bottom: 50px;
+  }
 }
 
 .year-select{
@@ -19,7 +27,9 @@
 
 h1{
   margin: 0;
-  margin-left: 20px;
+  position: absolute;
+  top: 0;
+  left: 20px;
   text-align: left;
   display: inline-block;
   color: #999999;
