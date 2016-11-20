@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import {List, Map} from 'immutable';
 import { GET_2016, GET_WIDTH, GET_SCROLL, GET_CURR_YEAR, SWITCH_YEAR, GET_YEARS } from '../actions';
+import {chooseColor} from '../utils/chooseColor';
 
-const getData = (data, color, side, width, scroll) => {
+const getData = (data, color, side, width) => {
   const obj = {color, side};
   obj.svotes = data.cvotes;
   obj.width = (width/2);
@@ -19,13 +20,13 @@ const getData = (data, color, side, width, scroll) => {
 
 const appendToLists = (scroll, state) => {
    if(scroll >= 1) {
-      const winner = state.getIn(['tallies', state.getIn(['tallies', 'winner']), 'data']);
+      const winner = state.getIn(['tallies', "winner", 'data']);
       if(winner.rowsRendered < winner.rows){
          const numToAdd = Math.min(Math.floor(scroll * winner.numPerRow), winner.rows - winner.rowsRendered);
-         state = state.setIn(['tallies', state.getIn(['tallies', 'winner']), 'data'], Object.assign({}, winner, {rowsRendered: winner.rowsRendered + numToAdd}));
+         state = state.setIn(['tallies', 'winner', 'data'], Object.assign({}, winner, {rowsRendered: winner.rowsRendered + numToAdd}));
          for(let i = 0; i < numToAdd; i ++){
-            state = state.updateIn(['tallies', 'dem', 'list', 'full'], l => l.push(`tally-item blue tally-item-${Math.floor(Math.random() * 11)}`));
-            state = state.updateIn(['tallies', 'rep', 'list', 'full'], l => l.push(`tally-item red tally-item-${Math.floor(Math.random() * 11)}`));
+            state = state.updateIn(['tallies', 'winner', 'list', 'full'], l => l.push(`tally-item blue tally-item-${Math.floor(Math.random() * 11)}`));
+            state = state.updateIn(['tallies', 'second', 'list', 'full'], l => l.push(`tally-item red tally-item-${Math.floor(Math.random() * 11)}`));
          }
          return state;
       } else {
@@ -55,21 +56,31 @@ const createFirst = (data) => {
    return list;
 }
 
+const addFname = (obj) => {
+  if(obj.fname){
+    return obj;
+  } else {
+    obj.fname = obj.party === 'D' ? "Hillary" : "Donald";
+  }
+  return obj;
+}
+
+const stringToNum = (str) => Number(str.replace(/,/g, ''));
+
 const showingData = (state = Map({
    width: 0,
    scroll: 0,
    year: "2016",
    data: {candidates: []},
    tallies: Map({
-      winner: 'dem',
-      rep: Map({
+      winner: Map({
          list: Map({
             full: List(),
             first: List(),
          }),
          data: {}
       }),
-      dem: Map({
+      second: Map({
          list: Map({
             full: List(),
             first: List(),
@@ -82,30 +93,25 @@ const showingData = (state = Map({
       case GET_2016:
       case SWITCH_YEAR:
          state = state.set('year', action.key);
-         let rep = action.data.candidates.find(item => item.party === 'R');
-         rep.fname = rep.fname || 'Donald';
-         let dem = action.data.candidates.find(item => item.party === 'D');
-         dem.fname = dem.fname || 'Hillary';
-         rep = getData(rep, 'red', 'left', state.get('width'), state.get('scroll'));
-         dem =   getData(dem, 'blue', 'right', state.get('width'), state.get('scroll'))
-         if (rep.votes > dem.votes) {
-            rep.displacement = 0;
-            dem.displacement = (rep.rows - dem.rows);
-            state = state.setIn(['tallies', 'winner'], 'rep');
-         } else {
-            dem.displacement = 0;
-            rep.displacement = (dem.rows - rep.rows);
-            state = state.setIn(['tallies', 'winner'], 'dem');
-         }
-         const disp = Math.max(dem.displacement + 10, rep.displacement + 10);
-         dem.rowsRendered = disp; 
-         rep.rowsRendered = disp; 
-         state = state.setIn(['tallies', 'rep', 'data'], rep);
-         state = state.setIn(['tallies','dem','data'], dem);
-         state = state.setIn(['tallies', 'rep', 'list', 'first'], createFirst(rep));
-         state = state.setIn(['tallies', 'rep', 'list', 'full'], createFull(rep));
-         state = state.setIn(['tallies', 'dem', 'list', 'first'], createFirst(dem));
-         state = state.setIn(['tallies', 'dem', 'list', 'full'], createFull(dem));
+         const candidates = List(action.data.candidates);
+         let winner = candidates.maxBy(a => stringToNum(a.cvotes));
+         const winnerIndex = candidates.indexOf(winner);
+         let second = candidates.delete(winnerIndex).maxBy(a => stringToNum(a.cvotes));
+         winner = addFname(winner);
+         second = addFname(second);
+         winner = getData(winner, chooseColor(winner.party), 'left', state.get('width'));
+         second = getData(second, chooseColor(second.party), 'right', state.get('width'));
+         winner.displacement = 0;
+         second.displacement = (winner.rows - second.rows);
+         const disp = Math.max(winner.displacement + 10, second.displacement + 10);
+         winner.rowsRendered = disp; 
+         second.rowsRendered = disp; 
+         state = state.setIn(['tallies', 'winner', 'data'], winner);
+         state = state.setIn(['tallies','second','data'], second);
+         state = state.setIn(['tallies', 'winner', 'list', 'first'], createFirst(winner));
+         state = state.setIn(['tallies', 'winner', 'list', 'full'], createFull(winner));
+         state = state.setIn(['tallies', 'second', 'list', 'first'], createFirst(second));
+         state = state.setIn(['tallies', 'second', 'list', 'full'], createFull(second));
          return state.set('data', action.data);
       case GET_SCROLL:
         state = appendToLists(Math.max((action.data - state.get('scroll'))/40, 0), state);

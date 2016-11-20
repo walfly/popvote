@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import './DifferenceSection.css';
+import styles from './DifferenceSection.css';
 import stringifyNum from '../utils/stringifyNum';
 
 export default class DiffernceSection extends Component {

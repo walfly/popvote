@@ -70,7 +70,7 @@
     top: 95px;
 }
 
-@media screen and (min-device-width: 900px) {
+@media screen and (min-width: 900px) {
     .tally-container .scroll-button{
         width: 140px
     }
@@ -88,29 +88,39 @@
         top: 75px;
     }
 }
-.tally-section h3.dem{
-    border-left: 1px solid #ddd;
+.tally-section h3:first-child{
+    border-right: 1px solid #ddd;
     margin-left: -1px;
 }
 
-.tally-section h3.rep span{
+.tally-section h3.red-header span{
     color: #d32939;
 }
 
-.tally-section h3.dem span{
+.tally-section h3.blue-header span{
     color: #396AD8;
 }
 
+.tally-section h3.purple-header span{
+    color: #9C57AD;
+}
 
-.tally-section .rep .total-numeric{
+
+.tally-section .red-header .total-numeric{
     font-size: 14px;
     color: #d32939;
     font-weight: 300;
 }
 
-.tally-section .dem .total-numeric{
+.tally-section .blue-header .total-numeric{
     font-size: 14px;
     color: #396AD8;
+    font-weight: 300;
+}
+
+.tally-section .purple-header .total-numeric{
+    font-size: 14px;
+    color: #9C57AD;
     font-weight: 300;
 }
 

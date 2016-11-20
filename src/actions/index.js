@@ -74,6 +74,9 @@ export const scrollButtonOff = () => {
 
 export const bindScroll = (store) => {
     document.addEventListener('scroll', throttle((e) => {
+        if(e.target.className && e.target.className.includes('select-dropdown')){
+            return;
+        }
         if(!buttonPressed){
             store.dispatch(getScroll(e.target.body.scrollTop));
         }

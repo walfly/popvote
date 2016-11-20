@@ -6,13 +6,16 @@ import TimeSinceSection from './components/TimeSinceSection';
 import ComparisonsSection from './components/ComparisonsSection';
 import YearSelector from './components/YearSelector';
 import {getWidth, getYears} from './actions';
-import {Map} from 'immutable';
+import {Map, List} from 'immutable';
 import './App.css';
+import {chooseColor, chooseColorText} from "./utils/chooseColor"
+
+const stringToNum = (str) => Number(str.replace(/,/g, ''));
+
 
 class App extends Component {
   static propTypes = {
-    d: PropTypes.object,
-    r: PropTypes.object,
+    candidates: PropTypes.array,
     ts: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     router: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
@@ -32,24 +35,18 @@ class App extends Component {
     this.props.router.navigate(selection.value, {trigger: true});
   }
 
+
   render() {
-    if(!this.props.d){
+    if(!this.props.candidates.length){
       return <div/>;
     }
-    let diff;
-    let lastName;
-    let winningParty;
-    const demVotes = Number(this.props.d.cvotes.replace(/,/g, ''));
-    const repVotes = Number(this.props.r.cvotes.replace(/,/g, ''));
-    if(demVotes > repVotes) {
-      diff = demVotes - repVotes;
-      lastName = this.props.d.lname;
-      winningParty = 'blue';
-    } else {
-      diff = repVotes - demVotes;
-      lastName = this.props.r.lname;
-      winningParty = 'red';
-    }
+    const candidates = List(this.props.candidates).sort((a,b) => stringToNum(a.cvotes) < stringToNum(b.cvotes))
+    const winner = candidates.maxBy(a => stringToNum(a.cvotes));
+    const winnerIndex = candidates.indexOf(winner);
+    const second = candidates.delete(winnerIndex).maxBy(a => stringToNum(a.cvotes));
+    const diff =  stringToNum(winner.cvotes) - stringToNum(second.cvotes);
+    const lastName = winner.lname;
+    const winningParty = chooseColor(winner.party);
     return (
       <div className="App">
         <div className="header">
@@ -57,8 +54,10 @@ class App extends Component {
           <YearSelector onChange={(e) => this.route(e)} year={this.props.year} yearList={this.props.years}/>
         </div>
         <p>In the {this.props.year} Presidential Election,</p>
-        <p><span className="red-text">{this.props.r.cvotes}</span> people voted for {`${this.props.r.fname} ${this.props.r.lname}`},</p>
-        <p><span className="blue-text">{this.props.d.cvotes}</span> people voted for {`${this.props.d.fname} ${this.props.d.lname}`}.</p>
+        {candidates.map((item, index) => {
+          const punc = index === candidates.size - 1 ? "." : ","
+          return <p key={item.fname}><span className={chooseColorText(item.party)}>{item.cvotes}</span> people voted for <span className="cand-name">{`${item.fname} ${item.lname}`}</span>{punc}</p>
+        })}
         <DifferenceSection diff={diff} lastName={lastName} winningParty={winningParty}/>
         <TimeSinceSection ts={this.props.ts}/>
         <ComparisonsSection diff={diff} winningParty={winningParty}/>
@@ -72,8 +71,7 @@ const mapStateToProps = state => {
   return {
     years,
     year: showingData.get('year'),
-    d: showingData.get('data').candidates.find(item => item.party === "D"),
-    r: showingData.get('data').candidates.find(item => item.party === "R"),
+    candidates: showingData.get('data').candidates,
     ts: showingData.get('data').wfLastUpdated,
     tallies: showingData.get('tallies'),
     width: showingData.get('width')

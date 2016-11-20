@@ -8,7 +8,7 @@
     margin-top: -1px;
 }
 
-@media screen and (min-device-width: 900px) {
+@media screen and (min-width: 900px) {
     .time-since-section{
         border: 1px solid #dddddd;
         color: #999;

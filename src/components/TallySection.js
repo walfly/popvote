@@ -10,32 +10,32 @@ export default class TallySection extends Component {
         width: PropTypes.number
     }
     render() {
-        const rep = this.props.tallies.get('rep');
-        const dem = this.props.tallies.get('dem');
+        const rep = this.props.tallies.get('winner');
+        const dem = this.props.tallies.get('second');
         return (
           <div style={{width: this.props.width}} className="tally-section">
-            <h3 className="rep">
+            <h3 className={`${rep.get('data').color}-header`}>
                 All <span>{rep.get('data').name}</span> Voters
                 <p className="total-numeric">({rep.get('data').svotes} TOTAL)</p>
             </h3>
-            <h3 className="dem">
+            <h3 className={`${dem.get('data').color}-header`}>
                 All <span>{dem.get('data').name}</span> Voters
                 <p className="total-numeric">({dem.get('data').svotes} TOTAL)</p>
             </h3>
-            <ComparisonLegend repName={rep.get('data').name} demName={dem.get('data').name}/>
-            <Tallies
-              side={rep.get('data').side}
-              width={rep.get('data').width}
-              displacement={rep.get('data').displacement}
-              firstRow={rep.getIn(['list', 'first'])}
-              full={rep.getIn(['list', 'full'])}
-            />
+            <ComparisonLegend winner={rep} second={dem}/>
             <Tallies
               side={dem.get('data').side}
               width={dem.get('data').width}
               displacement={dem.get('data').displacement}
               firstRow={dem.getIn(['list', 'first'])}
               full={dem.getIn(['list', 'full'])}
+            />
+            <Tallies
+              side={rep.get('data').side}
+              width={rep.get('data').width}
+              displacement={rep.get('data').displacement}
+              firstRow={rep.getIn(['list', 'first'])}
+              full={rep.getIn(['list', 'full'])}
             />
           </div>
         );

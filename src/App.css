@@ -7,14 +7,14 @@
 .header{
   text-align: center;
   border-bottom: 1px solid #ddd;
-  background-color: #eeeeee;
+  background-color: #f6f6f6;
   margin-bottom: 80px;
   display: block;
   margin-top: 0;
-  height: 50px
+  height: 50px;
 }
 
-@media screen and (min-device-width: 900px) {
+@media screen and (min-width: 900px) {
   .header{
     margin-bottom: 50px;
   }
@@ -29,10 +29,10 @@ h1{
   margin: 0;
   position: absolute;
   top: 0;
-  left: 20px;
+  left: 50px;
   text-align: left;
   display: inline-block;
-  color: #999999;
+  color: #bbb;
   font-size: 18px;
   padding: 15px;
   font-weight: 900;
@@ -51,8 +51,19 @@ p{
   color: #d32939;
   font-weight:900;
 }
-.star{
+
+.purple-text{
+  color: #9C57AD;
+  font-weight:900;
+}
+
+.cand-name{
+  font-weight: 900;
+}
+
+.star-left, .star-right{
   content: "0x2605";
+  color: #ddd;
   width:20px;
   height: 20px;
 }

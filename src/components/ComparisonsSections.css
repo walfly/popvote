@@ -13,7 +13,7 @@
     border-left: 1px solid #dddddd;
 }
 
-@media screen and (min-device-width: 900px) {
+@media screen and (min-width: 900px) {
     .comparisons-section .dividing-line{
         height: 150px;
     }
@@ -28,9 +28,7 @@
     padding: 40px;
     width: 55vw;
     margin: auto;
+    font-weight: 100;
 }
 
-.comparisons-section .how-big .blue-text{
-    background-color: transparent;
-}
 
