@@ -5,6 +5,7 @@ import TallySection from './components/TallySection';
 import TimeSinceSection from './components/TimeSinceSection';
 import ComparisonsSection from './components/ComparisonsSection';
 import YearSelector from './components/YearSelector';
+import ElectoralVotes from './components/ElectoralVotes';
 import {getWidth, getYears} from './actions';
 import {Map, List} from 'immutable';
 import './App.css';
@@ -47,6 +48,7 @@ class App extends Component {
     const diff =  stringToNum(winner.cvotes) - stringToNum(second.cvotes);
     const lastName = winner.lname;
     const winningParty = chooseColor(winner.party);
+    const electoralWinner = candidates.find(item => item.winner);
     return (
       <div className="App">
         <div className="header">
@@ -59,6 +61,7 @@ class App extends Component {
           return <p key={item.fname}><span className={chooseColorText(item.party)}>{item.cvotes}</span> people voted for <span className="cand-name">{`${item.fname} ${item.lname}`}</span>{punc}</p>
         })}
         <DifferenceSection diff={diff} lastName={lastName} winningParty={winningParty}/>
+        <ElectoralVotes winner={electoralWinner} year={this.props.year}/>
         <TimeSinceSection ts={this.props.ts}/>
         <ComparisonsSection diff={diff} winningParty={winningParty}/>
         <TallySection dispatch={this.props.dispatch} tallies={this.props.tallies} width={this.props.width} />

@@ -1,0 +1,21 @@
+.electoral-votes{
+    border: 1px solid #dddddd;
+    color: #999;
+    font-size: 18px;
+    width: 75vw;
+    padding: 25px 0px;
+    margin: auto;
+    margin-top: -1px;
+}
+
+@media screen and (min-width: 900px) {
+    .electoral-votes{
+        border: 1px solid #dddddd;
+        color: #999;
+        font-size: 18px;
+        width: 35vw;
+        padding: 20px 15px;
+        margin: auto;
+        margin-top: -1px;
+    }
+}

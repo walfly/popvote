@@ -170,6 +170,11 @@
   background-size: 50px;
 }
 
+.purple{
+  background-image: url(../img/purple_tally_sprite_75.png);
+  background-size: 50px;
+}
+
 .tally-item-0{
   background-position: 0 53px;
 }

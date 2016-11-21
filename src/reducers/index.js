@@ -25,8 +25,8 @@ const appendToLists = (scroll, state) => {
          const numToAdd = Math.min(Math.floor(scroll * winner.numPerRow), winner.rows - winner.rowsRendered);
          state = state.setIn(['tallies', 'winner', 'data'], Object.assign({}, winner, {rowsRendered: winner.rowsRendered + numToAdd}));
          for(let i = 0; i < numToAdd; i ++){
-            state = state.updateIn(['tallies', 'winner', 'list', 'full'], l => l.push(`tally-item blue tally-item-${Math.floor(Math.random() * 11)}`));
-            state = state.updateIn(['tallies', 'second', 'list', 'full'], l => l.push(`tally-item red tally-item-${Math.floor(Math.random() * 11)}`));
+            state = state.updateIn(['tallies', 'winner', 'list', 'full'], l => l.push(`tally-item ${state.getIn(['tallies', 'winner', 'data']).color} tally-item-${Math.floor(Math.random() * 11)}`));
+            state = state.updateIn(['tallies', 'second', 'list', 'full'], l => l.push(`tally-item ${state.getIn(['tallies', 'second', 'data']).color} tally-item-${Math.floor(Math.random() * 11)}`));
          }
          return state;
       } else {
