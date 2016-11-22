@@ -10,7 +10,7 @@ export default class About extends Component {
                 <h2>About</h2>
                 <div className="write-up">
                     <p>
-                        WhoGotMoreVotes.com is a non-partisan, data-driven illustration of a single metric often lost in the coverage of presidential elections: who got more votes?
+                        WhoGotMoreVotes.com is a non-partisan, data-driven visualization of a single metric often lost in the coverage of presidential elections: who got more votes?
                     </p>
                     <p>
                         Our historical data comes from the <a href="http://uselectionatlas.org/RESULTS/" target="_blank">US Elections Atlas</a>. 
@@ -25,7 +25,7 @@ export default class About extends Component {
                     <div className="bio alex">
                          <img src={alex} alt="alex" />
                          <p className="name">Alex Savard</p>
-                         <p> Designer - Data Vis - NYC</p>
+                         <p> Designer - Data Viz - NYC</p>
                          <a href="https://twitter.com/DataMadeVisible?lang=en" target="_blank"><Twitter/>@DataMadeVisible</a>
                     </div>
                     <div className="bio walker">

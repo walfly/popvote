@@ -62,7 +62,7 @@ class App extends Component {
         <p>In the {this.props.year} Presidential Election,</p>
         {candidates.map((item, index) => {
           const punc = index === candidates.size - 1 ? "." : ","
-          return <p key={item.fname}><span className={chooseColorText(item.party)}>{item.cvotes}</span> people voted for <span className="cand-name">{`${item.fname} ${item.lname}`}</span>{punc}</p>
+          return <p key={item.lname}><span className={chooseColorText(item.party)}>{item.cvotes}</span> people voted for <span className="cand-name">{`${item.fname} ${item.lname}`}</span>{punc}</p>
         })}
         <DifferenceSection diff={diff} lastName={lastName} winningParty={winningParty}/>
         <ElectoralVotes winner={electoralWinner} year={this.props.year}/>
