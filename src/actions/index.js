@@ -2,6 +2,7 @@ import cnnApi from '../api/cnnApi';
 import {yearData} from '../api/yearData';
 import throttle from 'lodash.throttle';
 
+
 export const GET_2016 = 'GET_2016';
 export const GET_CURR_YEAR = 'GET_CURR_YEAR';
 export const GET_WIDTH = 'GET_WIDTH';
@@ -9,6 +10,7 @@ export const GET_SCROLL = 'GET_SCROLL';
 export const SCROLL_BUTTON = 'SCROLL_BUTTON';
 export const SWITCH_YEAR = 'SWITCH_YEAR';
 export const GET_YEARS = 'GET_YEARS';
+export const ABOUT = 'ABOUT';
 let buttonPressed = false;
 
 const widthCalc = () => {
@@ -17,6 +19,12 @@ const widthCalc = () => {
     const e = d.documentElement;
     const g = d.getElementsByTagName('body')[0];
     return w.innerWidth || e.clientWidth || g.clientWidth;
+};
+
+export const about = () => {
+    return {
+        type: ABOUT
+    };
 };
 
 export const get2016 = () => dispatch => {

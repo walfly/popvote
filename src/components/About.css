@@ -1,0 +1,101 @@
+.about-section{
+    color: #999;
+    background-image: url(../img/tally_background.png);
+    background-repeat: repeat;
+    padding-top: 100px;
+    margin-top: -50px;
+}
+
+.about-section h2{
+    position: relative;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 150px;
+    margin: auto;
+    background-color: #fff;
+}
+
+.write-up a{
+    text-decoration: none;
+}
+
+.write-up, .creators-section{
+    box-sizing: border-box;
+    position: relative;
+    padding: 70px;
+    border: 1px solid #ddd;
+    width: 80vw;
+    margin: auto;
+    margin-top: -1px;
+    background-color: #fff;
+}
+
+.creators-section{
+    padding: 60px 20px;
+}
+
+.write-up p:first-child{
+    margin-bottom: 30px;
+}
+
+ .dibsvg-twitter{
+    width: 20px;
+    fill: #999;
+    vertical-align: middle;
+ }
+
+.bio{
+    position: relative;
+    width: 50%;
+    display: inline-block;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.bio:first-child{
+    margin-right: -1px;
+}
+
+.bio .name{
+    font-weight: 900;
+}
+
+.bio img{
+    width: 60%;
+}
+
+.bio a{
+    text-decoration: none;
+    color: #999;
+}
+
+
+.write-up-after, .creators-section-after{
+    content: '';
+    position: relative;
+    width: 10px;
+    left: 50%;
+    margin-left: -1px;
+    border-left: 1px solid #ddd;
+    height: 140px;
+}
+
+.creators-section-after{
+    border: none;
+}
+
+@media screen and (min-width: 900px) {
+    .write-up, .creators-section{
+        width: 60vw;
+    }
+}
+
+.about-footer{
+    position: relative;
+    bottom: 0;
+    padding: 20px;
+    color: #999;
+    background-color:  #f6f6f6;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    font-size: 8px;
+}

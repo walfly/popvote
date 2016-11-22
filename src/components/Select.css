@@ -5,24 +5,25 @@
     box-sizing: border-box;
     width: 150px;
     height: 55px;
-    padding: 12px 15px 15px 0;
+    padding: 12px 15px 15px 12px;
     background: #f6f6f6;
-    color: #bbb;
+    color: #999;
     border: 1px solid #ddd;
     display: inline-block;
     cursor: pointer;
     font-weight: 900;
     font-size: 24px;
+
 }
 
 .select-header .arrow{
     transform: rotate(45deg) translate(0, -8px);
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
     width: 10px;
     height: 10px;
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 8px;
 }
 
 .select-dropdown{
@@ -33,7 +34,7 @@
     width: 150px;
     padding: 0;
     text-align: center;
-    margin-left: -1px;
+    margin-left: -13px;
     position: relative;
     z-index: 500;
     height: 400px;

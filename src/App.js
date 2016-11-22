@@ -9,7 +9,8 @@ import ElectoralVotes from './components/ElectoralVotes';
 import {getWidth, getYears} from './actions';
 import {Map, List} from 'immutable';
 import './App.css';
-import {chooseColor, chooseColorText} from "./utils/chooseColor"
+import {chooseColor, chooseColorText} from "./utils/chooseColor";
+import About from "./components/About";
 
 const stringToNum = (str) => Number(str.replace(/,/g, ''));
 
@@ -23,21 +24,29 @@ class App extends Component {
     tallies: PropTypes.instanceOf(Map),
     width: PropTypes.number,
     year: PropTypes.string,
-    years: PropTypes.array
+    years: PropTypes.array,
+    about: PropTypes.bool
   }
 
   componentDidMount() {
     this.props.dispatch(getWidth());
     this.props.dispatch(getYears());
-    this.props.router.navigate(this.props.year, {trigger: true});
+    this.props.router.navigate(window.location.pathname.substring(1, window.location.pathname.length), {trigger: true});
   }
 
   route(selection) {
     this.props.router.navigate(selection.value, {trigger: true});
   }
 
+  route2016() {
+    this.props.router.navigate("", {trigger: true});
+  }
 
-  render() {
+  about() {
+    this.props.router.navigate('about');
+  }
+
+  body() {
     if(!this.props.candidates.length){
       return <div/>;
     }
@@ -49,12 +58,7 @@ class App extends Component {
     const lastName = winner.lname;
     const winningParty = chooseColor(winner.party);
     const electoralWinner = candidates.find(item => item.winner);
-    return (
-      <div className="App">
-        <div className="header">
-          <h1>Who Got More Votes?</h1>
-          <YearSelector onChange={(e) => this.route(e)} year={this.props.year} yearList={this.props.years}/>
-        </div>
+    return (<div>
         <p>In the {this.props.year} Presidential Election,</p>
         {candidates.map((item, index) => {
           const punc = index === candidates.size - 1 ? "." : ","
@@ -65,19 +69,38 @@ class App extends Component {
         <TimeSinceSection ts={this.props.ts}/>
         <ComparisonsSection diff={diff} winningParty={winningParty}/>
         <TallySection dispatch={this.props.dispatch} tallies={this.props.tallies} width={this.props.width} />
+      </div>);
+  }
+
+  render() {
+    let body;
+    if(this.props.about){
+      body = <About/>;
+    } else {
+      body = this.body();
+    }
+    return (
+      <div className="App">
+        <div className="header">
+          <h1 onClick={() => this.route2016()}>Who Got More Votes?</h1>
+          <YearSelector onChange={(e) => this.route(e)} year={this.props.year} yearList={this.props.years}/>
+          <div className="about-page" onClick={() => this.about()}>About</div>
+        </div>
+        {body}
       </div>
     );
   }
 }
 const mapStateToProps = state => {
-  const {showingData, years} = state;
+  const {showingData, years, about} = state;
   return {
     years,
     year: showingData.get('year'),
     candidates: showingData.get('data').candidates,
     ts: showingData.get('data').wfLastUpdated,
     tallies: showingData.get('tallies'),
-    width: showingData.get('width')
+    width: showingData.get('width'),
+    about: about.about
   };
 }
 

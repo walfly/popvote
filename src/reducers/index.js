@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {List, Map} from 'immutable';
-import { GET_2016, GET_WIDTH, GET_SCROLL, GET_CURR_YEAR, SWITCH_YEAR, GET_YEARS } from '../actions';
+import { GET_2016, GET_WIDTH, GET_SCROLL, GET_CURR_YEAR, SWITCH_YEAR, GET_YEARS, ABOUT } from '../actions';
 import {chooseColor} from '../utils/chooseColor';
 
 const getData = (data, color, side, width) => {
@@ -134,9 +134,22 @@ const years = (state = [], action) => {
    }
 }
 
+const about = (state = {about:false}, action) => {
+  switch(action.type) {
+    case GET_2016:
+    case SWITCH_YEAR:
+      return {about: false};
+    case ABOUT:
+      return {about: true};
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   showingData,
-  years
+  years,
+  about
 });
 
 export default rootReducer;
