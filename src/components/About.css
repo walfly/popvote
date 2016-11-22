@@ -63,9 +63,13 @@
     width: 60%;
 }
 
-.bio a{
+.creators-section a{
     text-decoration: none;
     color: #999;
+}
+
+.creators-section > p {
+    margin-top: 20px;
 }
 
 

@@ -34,6 +34,7 @@ export default class About extends Component {
                         <p> Designer - Developer - NYC</p>
                         <a href="https://twitter.com/walkercheese?lang=en" target="_blank"><Twitter/>@walkercheese</a>
                     </div>
+                    <p><a href="mailto:info@whogotmorevotes.com?Subject=Hello">info@WhoGotMoreVotes.com</a></p>
                 </div>
                 <div className="creators-section-after"/>
 
