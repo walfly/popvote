@@ -26,5 +26,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-router.history.start({root: "/popvote"});
+router.history.start();
 bindScroll(store);
