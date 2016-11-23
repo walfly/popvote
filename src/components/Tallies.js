@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import {List} from 'immutable';
 import jump from 'jump.js'
-import {easeInOutQuint} from 'ez.js';
+import {easeOut} from 'ez.js';
 import {scrollButtonOn, scrollButtonOff} from '../actions'
 
 export default class Tallies extends Component {
@@ -11,15 +11,14 @@ export default class Tallies extends Component {
         displacement: PropTypes.number,
         firstRow: PropTypes.instanceOf(List),
         full: PropTypes.instanceOf(List)
-        // dispatch: PropTypes.func.isRequired
     }
     onScrollClick() {
         scrollButtonOn()
         jump(this.frow, {
             a11y: false,
-            duration: 2300,
+            duration: this.props.displacement * 10,
             offset: -40,
-            easing: easeInOutQuint,
+            easing: easeOut,
             callback: scrollButtonOff
         })
     }
