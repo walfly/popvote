@@ -528,7 +528,7 @@ export const yearData = {
           "cvotes": "43,129,040",
           "evotes": 486,
           "pctDecimal": "61.05",
-          "winner": false
+          "winner": true
         }
       ],
       "check": "r",

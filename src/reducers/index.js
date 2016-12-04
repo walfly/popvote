@@ -22,8 +22,8 @@ const appendToLists = (scroll, state) => {
    if(scroll >= 1) {
       const winner = state.getIn(['tallies', "winner", 'data']);
       if(winner.rowsRendered < winner.rows){
-         const numToAdd = Math.min(Math.floor(scroll * winner.numPerRow), winner.rows - winner.rowsRendered);
-         state = state.setIn(['tallies', 'winner', 'data'], Object.assign({}, winner, {rowsRendered: winner.rowsRendered + numToAdd}));
+         const numToAdd = Math.min(Math.floor(scroll * winner.numPerRow), (winner.rows - winner.rowsRendered) * winner.numPerRow);
+         state = state.setIn(['tallies', 'winner', 'data'], Object.assign({}, winner, {rowsRendered: winner.rowsRendered + Math.round(numToAdd/9)}));
          for(let i = 0; i < numToAdd; i ++){
             state = state.updateIn(['tallies', 'winner', 'list', 'full'], l => l.push(`tally-item ${state.getIn(['tallies', 'winner', 'data']).color} tally-item-${Math.floor(Math.random() * 11)}`));
             state = state.updateIn(['tallies', 'second', 'list', 'full'], l => l.push(`tally-item ${state.getIn(['tallies', 'second', 'data']).color} tally-item-${Math.floor(Math.random() * 11)}`));
